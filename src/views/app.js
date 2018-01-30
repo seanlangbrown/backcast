@@ -9,8 +9,8 @@ var AppView = Backbone.View.extend({
     this.render();
     this.videoListView.render();
     //access list (array of models)
-      //create new collection from list
-        //pass in collection to new view constructor function     
+    //create new collection from list
+    //pass in collection to new view constructor function     
   },
 
 
