@@ -6,16 +6,19 @@ var AppView = Backbone.View.extend({
     this.videos = new Videos();
     this.videos.add(window.exampleVideoData);
     this.videoListView = new VideoListView({collection: this.videos});
-    this.render();
-    this.videoListView.render();
-    //access list (array of models)
-    //create new collection from list
-    //pass in collection to new view constructor function     
+    this.render(); 
   },
 
 
   render: function() {
-    this.$el.html(this.template());
+    var totalView = {
+      videoList: this.videoListView.render(),
+      searchBar: '',
+      videoPlayer: ''
+    };
+    console.log(this.videoListView.$el);
+    this.$el.html(this.template(totalView));
+    console.log(this.$el.html());
     return this;
   },
 
