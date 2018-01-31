@@ -7,21 +7,25 @@ var AppView = Backbone.View.extend({
     this.videos.add(window.exampleVideoData);
     this.videoListView = new VideoListView({collection: this.videos});
     //console.log(this.videos);
-    this.videoPlayer = new VideoPlayerView({model: this.videos.models[0]});
+    this.videoPlayer = new VideoPlayerView({collection: this.videos});
     this.render(); 
-    
+     
+    this.videoPlayer.on('render', this.render, this);
   },
-
+  
 
   render: function() {
+    var playerView = this.videoPlayer.$el.html();
+    var videoListView = this.videoListView.render();
+    //console.log(playerView);
     var totalView = {
-      videoList: this.videoListView.render(),
+      videoList: videoListView,
       searchBar: '',
-      videoPlayer: this.videoPlayer.render()
+      videoPlayer: playerView
     };
-    console.log(this.videoListView.$el);
+    //console.log(this.videoListView.$el);
     this.$el.html(this.template(totalView));
-    console.log(this.$el.html());
+    //console.log(this.$el.html());
     return this;
   },
 
