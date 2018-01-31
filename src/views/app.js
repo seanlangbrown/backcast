@@ -8,19 +8,22 @@ var AppView = Backbone.View.extend({
     this.videoListView = new VideoListView({collection: this.videos});
     //console.log(this.videos);
     this.videoPlayer = new VideoPlayerView({collection: this.videos});
+    this.searchBar = new SearchView({collection: this.videos});
     this.render(); 
      
     this.videoPlayer.on('render', this.render, this);
+    this.searchBar.on('render', this.render, this);
   },
   
 
   render: function() {
     var playerView = this.videoPlayer.$el.html();
     var videoListView = this.videoListView.render();
+    var searchView = this.searchBar.$el.html();
     //console.log(playerView);
     var totalView = {
       videoList: videoListView,
-      searchBar: '',
+      searchBar: searchView,
       videoPlayer: playerView
     };
     //console.log(this.videoListView.$el);
